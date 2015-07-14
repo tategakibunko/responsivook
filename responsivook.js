@@ -3,11 +3,8 @@
  * Copyright Masaki WATANABE
  * Licensed under MIT
  */
-var Responsivook = Responsivook || {
-  targets:[]
-};
 
-Responsivook.start = (function(){
+var Responsivook = (function(){
   var _get_default_font_size = function(height){
     return Math.floor(height / (22 + 2.5));
   };
@@ -142,11 +139,9 @@ Responsivook.start = (function(){
     return height - Math.floor(2.5 * font_size);
   };
 
-  var _create_resize_checker = function(path){
-    return function(target){
-      var $parent = target.$dom.parentNode;
-      return target.path === path && target.width !== $parent.offsetWidth;
-    };
+  var _check_resize = function(target){
+    var $parent = target.$dom.parentNode;
+    return target.width !== $parent.offsetWidth;
   };
 
   var _resize_page_size = function(target){
@@ -167,7 +162,7 @@ Responsivook.start = (function(){
     return result;
   };
 
-  var _create_target = function($dom, path, opt){
+  var _create_target = function($dom, opt){
     var raw_html = $dom.innerHTML;
     var html = _create_html(raw_html, opt.onHtml || null);
     var flow = opt.flow || "tb-rl";
@@ -189,7 +184,6 @@ Responsivook.start = (function(){
     var right_type = is_left_next? "prev" : "next";
     return {
       $dom:$dom,
-      path:path,
       html:html,
       flow:flow,
       color:color,
@@ -209,23 +203,22 @@ Responsivook.start = (function(){
     };
   };
 
-  return function(path, args){
-    var opt = args || {};
-    var on_complete = opt.onComplete || null;
-    
-    Responsivook.targets = Responsivook.targets.concat(
-      Array.prototype.map.call(document.querySelectorAll(path), function($dom){
-	var cache = _create_target($dom, path, opt);
+  return {
+    start : function(path, args){
+      var opt = args || {};
+      var on_complete = opt.onComplete || null;
+      var targets =  Array.prototype.map.call(document.querySelectorAll(path), function($dom){
+	var cache = _create_target($dom, opt);
 	$dom.style.display = "none";
 	return cache;
-      })
-    );
-    
-    _start_books(Responsivook.targets, on_complete);
-    
-    document.addEventListener("resized", function(event){
-      var updated_targets = Responsivook.targets.filter(_create_resize_checker(path)).map(_resize_page_size);
-      _start_books(updated_targets, on_complete);
-    });
+      });
+
+      _start_books(targets, on_complete);
+      
+      document.addEventListener("resized", function(event){
+	var updated_targets = targets.filter(_check_resize).map(_resize_page_size);
+	_start_books(updated_targets, on_complete);
+      });
+    }
   };
 })();
