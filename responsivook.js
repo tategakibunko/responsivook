@@ -40,14 +40,14 @@ var Responsivook = (function(){
 
   var _create_button = function(label, color){
     var button = document.createElement("button");
-    button.className = ["tumblr-book-btn", "btn", "icon-only", color].join(" ");
+    button.className = ["responsivook-btn", "btn", "icon-only", color].join(" ");
     button.innerHTML = label;
     return button;
   };
 
   var _create_pager = function(target){
     var div = document.createElement("div");
-    div.className = "tumblr-book-pager";
+    div.className = "responsivook-pager";
     var left = _create_button(target.leftLabel, target.leftColor);
     var right = _create_button(target.rightLabel, target.rightColor);
     div.appendChild(left);
@@ -105,7 +105,7 @@ var Responsivook = (function(){
   var _insert_after = function($target, $ins_node){
     var $parent = $target.parentNode;
     var $next = $target.nextSibling;
-    if($next && $next.classList && $next.classList.contains("tumblr-book")){
+    if($next && $next.classList && $next.classList.contains("responsivook")){
       $parent.removeChild($next);
       $next = $target.nextSibling;
     }
@@ -114,7 +114,7 @@ var Responsivook = (function(){
 
   var _start_book = function(target){
     var $book = document.createElement("div");
-    $book.className = "tumblr-book";
+    $book.className = "responsivook";
     var screen = _create_screen(target);
     var pager = _create_pager(target);
     $book.appendChild(screen.element);

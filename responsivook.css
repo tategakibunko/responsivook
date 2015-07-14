@@ -9,13 +9,13 @@
 .fadein {
   opacity: 1; }
 
-.tumblr-book-fadein {
+.responsivook-fadein {
   opacity: 1; }
 
-.tumblr-book {
+.responsivook {
   margin-bottom: 2em; }
 
-.tumblr-book-btn:first-child {
+.responsivook-btn:first-child {
   margin-right: 20px; }
 
 .nehan-wrap {
@@ -24,7 +24,7 @@
 .nehan-wrap::after {
   content: ""; }
 
-.tumblr-book-pager {
+.responsivook-pager {
   text-align: center; }
 
 .btn,
