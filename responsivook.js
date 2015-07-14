@@ -204,6 +204,7 @@ var Responsivook = (function(){
   };
 
   return {
+    version : "1.0.0",
     start : function(path, args){
       var opt = args || {};
       var on_complete = opt.onComplete || null;
