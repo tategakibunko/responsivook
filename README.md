@@ -6,7 +6,7 @@ Supports vertical writing-mode(vertical-lr, vertical-rl, horizontal-tb).
 
 Available on IE+10, Firefox3.5+, Chrome4+, Safari6+ etc.
 
-See [demo](http://tategakibunko.tumblr.com).
+See [DEMO](http://tb.antiscroll.com/static/responsivook/).
 
 ## Install
 
