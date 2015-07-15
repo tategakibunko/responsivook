@@ -5,6 +5,17 @@
  */
 
 var Responsivook = (function(){
+  // for IE polyfill of CustomEvent
+  function CustomEvent (event, params){
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent("CustomEvent");
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return evt;
+  };
+
+  CustomEvent.prototype = window.Event.prototype;
+  window.CustomEvent = CustomEvent;
+
   var _get_default_font_size = function(height){
     return Math.floor(height / (22 + 2.5));
   };
