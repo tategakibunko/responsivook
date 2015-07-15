@@ -37,8 +37,26 @@ document.addEventListener("DOMContentLoaded", function(event){
 
 ## Options
 
+You can set various option via second argument of `Responsivook.start`.
+
+If you want to set viewer glocal style, use `Responsivook.setStyles` **before** `Responsivook.start`.
+
+If you want to set viewer local style, use option `styles` in `Responsivook.start`.
+
+See the document of nehan.js(http://tategakibunko.github.io/nehan.js/) for more detail about style object in nehan.js.
+
+
 ```javascript
 document.addEventListener("DOMContentLoaded", function(event){
+  // You can set global styles that are available across other viewers like this.
+  // Note that this must be called 'before' Responsivook.start.
+  Responsivook.setStyles({
+    "h1.my-header":{
+       fontSize:"2em",
+       margin:{after:"1.5em"}
+    }
+  });
+
   Responsivook.start(".post-content", {
     // writing-mode for paged-media, default value is "tb-rl".
     // available values:["tb-rl", "tb-lr", "lr-tb"]
@@ -62,6 +80,13 @@ document.addEventListener("DOMContentLoaded", function(event){
     fontSize:16,
     width:500,
     height:400,
+
+    // viewer local styles. nothing defined by default.
+    styles:{
+      ".paragraph":{
+        margin:{after:"1em"}
+      }
+    },
 
     // left/right button label. not defined by default.
     leftLabel:"&laquo; NEXT",

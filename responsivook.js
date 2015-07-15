@@ -76,7 +76,7 @@ var Responsivook = (function(){
 	  ctx.dom.classList.add("fadein");
 	}, 10);
       }
-    }).setContent(target.html);
+    }).setStyles(target.styles).setContent(target.html);
     var pe_element = pe.getElement();
     pe_element.className = "nehan-wrap-content";
     pe_element.style.padding = [
@@ -182,6 +182,7 @@ var Responsivook = (function(){
     var right_label = opt.rightLabel || "&#9654;";
     var left_type = is_left_next? "next" : "prev";
     var right_type = is_left_next? "prev" : "next";
+    var styles = opt.styles || {};
     return {
       $dom:$dom,
       html:html,
@@ -199,12 +200,19 @@ var Responsivook = (function(){
       leftLabel:left_label,
       rightLabel:right_label,
       leftType:left_type,
-      rightType:right_type
+      rightType:right_type,
+      styles:styles
     };
   };
 
   return {
-    version : "1.0.0",
+    version : "1.1.0",
+    setStyle : function(name, value){
+      Nehan.setStyle(name, value);
+    },
+    setStyles: function(styles){
+      Nehan.setStyles(styles);
+    },
     start : function(path, args){
       var opt = args || {};
       var on_complete = opt.onComplete || null;
