@@ -69,14 +69,24 @@ var Responsivook = (function(){
     };
   };
 
+  var __set_page = function(screen){
+    var page = screen.pages.getPage(screen.pageIndex);
+    screen.contentElement.innerHTML = "";
+    screen.contentElement.appendChild(page.element);
+  };
+
   var _create_screen = function(target){
-    var wrap = document.createElement("div");
-    wrap.className = "nehan-wrap";
-    wrap.style.width = target.width + "px";
-    wrap.style.height = target.height + "px";
-    wrap.style.backgroundColor = target.backgroundColor;
-    wrap.style.color = target.color;
-    var pe = Nehan.createPagedElement().setStyle("body", {
+    var screen = {
+      pageIndex:0,
+      pageCount:0
+    };
+    screen.element = document.createElement("div");
+    screen.element.className = "nehan-wrap";
+    screen.element.style.width = target.width + "px";
+    screen.element.style.height = target.height + "px";
+    screen.element.style.backgroundColor = target.backgroundColor;
+    screen.element.style.color = target.color;
+    var body_style = {
       flow:target.flow,
       fontSize:target.fontSize,
       fontFamily:target.fontFamily,
@@ -87,27 +97,36 @@ var Responsivook = (function(){
 	  ctx.dom.classList.add("fadein");
 	}, 10);
       }
-    }).setStyles(target.styles).setContent(target.html);
-    var pe_element = pe.getElement();
-    pe_element.className = "nehan-wrap-content";
-    pe_element.style.padding = [
+    };
+    screen.pages = new Nehan.Document()
+      .setStyle("body", body_style)
+      .setStyles(target.styles)
+      .setContent(target.html)
+      .render({
+	onProgress:function(tree, ctx){
+	  screen.pageCount++;
+	}
+      })
+    ;
+    screen.contentElement = document.createElement("div");
+    screen.contentElement.className = "nehan-wrap-content";
+    screen.contentElement.style.padding = [
       target.fontSize + "px",
       target.fontSize + "px",
       Math.floor(1.5 * target.fontSize) + "px"
     ].join(" ");
-    wrap.appendChild(pe_element);
-    return {
-      element:wrap,
-      pages:pe
-    };
+    screen.element.appendChild(screen.contentElement);
+    return screen;
   };
 
-  var _create_on_click_pager = function(pages, type){
+  var _create_on_click_pager = function(screen, type){
     return (type === "next")? function(){
-      pages.setNextPage();
+      screen.pageIndex = Math.min(screen.pageIndex + 1, screen.pageCount - 1);
+      __set_page(screen);
       return false;
     } : function(){
-      pages.setPrevPage();
+      screen.pageIndex = Math.max(0, screen.pageIndex - 1);
+      __set_page(screen);
       return false;
     };
   };
@@ -129,9 +148,10 @@ var Responsivook = (function(){
     var pager = _create_pager(target);
     $book.appendChild(screen.element);
     $book.appendChild(pager.element);
-    pager.left.onclick = _create_on_click_pager(screen.pages, target.leftType);
-    pager.right.onclick = _create_on_click_pager(screen.pages, target.rightType);
+    pager.left.onclick = _create_on_click_pager(screen, target.leftType);
+    pager.right.onclick = _create_on_click_pager(screen, target.rightType);
     _insert_after(target.$dom, $book);
+    __set_page(screen);
     return $book;
   };
 
