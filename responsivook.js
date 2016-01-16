@@ -71,8 +71,12 @@ var Responsivook = (function(){
 
   var __set_page = function(screen){
     var page = screen.pages.getPage(screen.pageIndex);
-    screen.contentElement.innerHTML = "";
-    screen.contentElement.appendChild(page.element);
+    var target = screen.contentElement;
+    if(target.firstChild){
+      target.replaceChild(page.element, target.firstChild);
+    } else {
+      target.appendChild(page.element);
+    }
   };
 
   var _create_screen = function(target){
