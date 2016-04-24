@@ -16,6 +16,8 @@ var Responsivook = (function(){
   CustomEvent.prototype = window.Event.prototype;
   window.CustomEvent = CustomEvent;
 
+  var __min_font_size = 12;
+
   var _get_default_font_size = function(height){
     return Math.floor(height / (22 + 2.5));
   };
@@ -205,7 +207,7 @@ var Responsivook = (function(){
     var background_color = opt.backgroundColor || "#eee";
     var width = $dom.offsetWidth;
     var height_draft = Math.max(200, opt.height || _get_default_height());
-    var font_size = Math.max(12, opt.fontSize || _get_default_font_size(height_draft));
+    var font_size = Math.max(opt.minFontSize || __min_font_size, opt.fontSize || _get_default_font_size(height_draft));
     var height = font_size * Math.floor(height_draft / font_size);
     var font_family = opt.fontFamily || "'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho'";
     var page_width = _get_page_width(width, font_size);
