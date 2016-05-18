@@ -127,8 +127,6 @@ var Responsivook = (function(){
     element.className = "responsivook-nehan-wrap";
     element.style.width = opt.width + "px";
     element.style.height = _get_wrap_height(opt);
-    element.style.backgroundColor = opt.backgroundColor;
-    element.style.color = opt.color;
     return element;
   };
 
@@ -248,8 +246,6 @@ var Responsivook = (function(){
     var raw_html = $dom.innerHTML;
     var html = _create_html(raw_html, opt.onHtml || null);
     var flow = opt.flow || "tb-rl";
-    var color = opt.color || "#444";
-    var background_color = opt.backgroundColor || "#eee";
     var width = $dom.offsetWidth;
     var height_draft = Math.max(200, opt.height || _get_default_height());
     var font_size = Math.max(opt.minFontSize || __min_font_size, opt.fontSize || _get_default_font_size(height_draft));
@@ -270,8 +266,6 @@ var Responsivook = (function(){
       $dom:$dom,
       html:html,
       flow:flow,
-      color:color,
-      backgroundColor:background_color,
       width:width,
       height:height,
       pageWidth:page_width,

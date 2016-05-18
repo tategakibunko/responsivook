@@ -3,7 +3,8 @@
   -moz-transition: opacity 0.2s ease-in;
   -ms-transition: opacity 0.2s ease-in;
   -o-transition: opacity 0.2s ease-in;
-  transition: opacity 0.2s ease-in; }
+  transition: opacity 0.2s ease-in;
+  margin: 0 auto; }
 
 .responsivook-fadein {
   opacity: 1; }
@@ -26,7 +27,9 @@
 
 .responsivook-nehan-wrap {
   padding: 1em 0;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  background-color: #eeeeee;
+  color: #444444; }
 
 .rsponsivook-nehan-wrap::after {
   content: ""; }

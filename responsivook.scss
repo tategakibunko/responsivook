@@ -1,3 +1,7 @@
+// colors
+$screen-bg-color:#eee;
+$screen-font-color:#444;
+
 // effect
 $fadein-time:0.2s;
 
@@ -8,6 +12,7 @@ $fadein-time:0.2s;
   -ms-transition: opacity $fadein-time ease-in;
   -o-transition: opacity $fadein-time ease-in;
   transition: opacity $fadein-time ease-in;
+  margin:0 auto;
 }
 .responsivook-fadein{
   opacity:1;
@@ -31,6 +36,8 @@ $fadein-time:0.2s;
 .responsivook-nehan-wrap{
   padding:1em 0;
   margin-bottom:1em;
+  background-color:$screen-bg-color;
+  color:$screen-font-color;
 }
 .rsponsivook-nehan-wrap::after{
   content:""
