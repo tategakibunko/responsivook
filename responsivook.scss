@@ -6,7 +6,7 @@ $screen-font-color:#444;
 $fadein-time:0.2s;
 
 .nehan-body{
-  //opacity:0;
+  opacity:0;
   -webkit-transition: opacity $fadein-time ease-in;
   -moz-transition: opacity $fadein-time ease-in;
   -ms-transition: opacity $fadein-time ease-in;
