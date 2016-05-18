@@ -1,30 +1,38 @@
 // effect
-$fadein-time:0.4s;
+$fadein-time:0.2s;
 
 .nehan-body{
-  opacity:0;
+  //opacity:0;
   -webkit-transition: opacity $fadein-time ease-in;
   -moz-transition: opacity $fadein-time ease-in;
   -ms-transition: opacity $fadein-time ease-in;
   -o-transition: opacity $fadein-time ease-in;
   transition: opacity $fadein-time ease-in;
 }
-.fadein{
-  opacity:1;
-}
 .responsivook-fadein{
   opacity:1;
-}
-.responsivook{
-  margin-bottom:2em;
 }
 .responsivook-btn:first-child{
   margin-right:20px;
 }
-.nehan-wrap{
+.responsivook-divider{
+  border-top: 1px solid rgba(34, 36, 38, .15);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  color:rgba(0, 0, 0, .85);
+  font-size:1rem;
+  margin:1rem 0;
+  height:0;
+  line-height:1;
+  letter-spacing: .05em;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-user-select: none;
+}
+.responsivook-nehan-wrap{
+  padding:1em 0;
   margin-bottom:1em;
 }
-.nehan-wrap::after{
+.rsponsivook-nehan-wrap::after{
   content:""
 }
 .responsivook-pager{

@@ -48,28 +48,14 @@ See the document of nehan.js(http://tategakibunko.github.io/nehan.js/) for more 
 
 ```javascript
 document.addEventListener("DOMContentLoaded", function(event){
-  // You can set global styles that are available across other viewers like this.
-  // Note that this must be called 'before' Responsivook.start.
-  Responsivook.setStyles({
-    "h1.my-header":{
-       fontSize:"2em",
-       margin:{after:"1.5em"}
-    }
-  });
-
   Responsivook.start(".post-content", {
     // writing-mode for paged-media, default value is "tb-rl".
     // available values:["tb-rl", "tb-lr", "lr-tb"]
     flow:"tb-rl",
 
-    // preprocessor for raw html text. not defined by default.
+    // html preprocessor for each rendering target. not defined by default.
     onHtml:function(html){
       return html;
-    },
-
-    // callback function after all viewers are generated. not defined by default.
-    onComplete:function(){
-      console.log("complete!");
     },
 
     // color, background-color, font-size, font-family, width, height of pages.
