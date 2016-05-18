@@ -53,6 +53,10 @@ document.addEventListener("DOMContentLoaded", function(event){
     // available values:["tb-rl", "tb-lr", "lr-tb"]
     flow:"tb-rl",
 
+    // layouting theme, default value is "book".
+    // available values:["book", "dangumi"]
+    theme:"book",
+    
     // html preprocessor for each rendering target. not defined by default.
     onHtml:function(html){
       return html;
