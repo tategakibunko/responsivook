@@ -62,10 +62,8 @@ document.addEventListener("DOMContentLoaded", function(event){
       return html;
     },
 
-    // color, background-color, font-size, font-family, width, height of pages.
+    // font-size, font-family, width, height of pages.
     // if not defined, each properties are automatically defined(recommended).
-    color:"#444",
-    backgroundColor:"#eee",
     fontFamily:"'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho'",
     fontSize:16,
     width:500,
