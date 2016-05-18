@@ -39,13 +39,6 @@ document.addEventListener("DOMContentLoaded", function(event){
 
 You can set various option via second argument of `Responsivook.start`.
 
-If you want to set viewer glocal style, use `Responsivook.setStyles` **before** `Responsivook.start`.
-
-If you want to set viewer local style, use option `styles` in `Responsivook.start`.
-
-See the document of nehan.js(http://tategakibunko.github.io/nehan.js/) for more detail about style object in nehan.js.
-
-
 ```javascript
 document.addEventListener("DOMContentLoaded", function(event){
   Responsivook.start(".post-content", {
@@ -70,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event){
     height:400,
 
     // viewer local styles. nothing defined by default.
+    // About styling values, see nehan.js document.
     styles:{
       ".paragraph":{
         margin:{after:"1em"}
