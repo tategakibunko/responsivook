@@ -116,10 +116,7 @@ var Responsivook = (function(){
   };
 
   var _get_wrap_height = function(opt){
-    switch(opt.theme){
-    case "dangumi": return "auto";
-    default: return opt.height + "px";
-    }
+    return "auto";
   };
 
   var _create_wrap_element = function(opt){
