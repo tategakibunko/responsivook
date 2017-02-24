@@ -293,6 +293,7 @@ var Responsivook = (function(){
        @param args.rightLabel {String}
        @param args.leftColor {String}
        @param args.rigthColor {String}
+       @param args.onHtml {Function}
      */
     start : function(path, args){
       args = args || {};
