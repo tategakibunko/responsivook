@@ -287,7 +287,6 @@ var Responsivook = (function(){
        @param args.theme {String}
        @param args.fontSize {int}
        @param args.fontFamily {String}
-       @param args.width {int}
        @param args.height {int}
        @param args.styles {Object}
        @param args.leftLabel {String}

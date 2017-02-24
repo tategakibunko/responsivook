@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function(event){
     // if not defined, each properties are automatically defined(recommended).
     fontFamily:"'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho'",
     fontSize:16,
-    width:500,
     height:400,
 
     // viewer local styles. nothing defined by default.
