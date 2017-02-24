@@ -247,7 +247,7 @@ var Responsivook = (function(){
     var height_draft = Math.max(200, opt.height || _get_default_height());
     var font_size = Math.max(opt.minFontSize || __min_font_size, opt.fontSize || _get_default_font_size(height_draft));
     var height = font_size * Math.floor(height_draft / font_size);
-    var font_family = opt.fontFamily || "'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho'";
+    var font_family = opt.fontFamily || "'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho', monospace";
     var page_width = _get_page_width(width, font_size);
     var page_height = _get_page_height(height, font_size);
     var is_left_next = flow === "tb-rl";
@@ -282,6 +282,19 @@ var Responsivook = (function(){
 
   return {
     version : "1.2.0",
+    /**
+       @param args.flow {String}
+       @param args.theme {String}
+       @param args.fontSize {int}
+       @param args.fontFamily {String}
+       @param args.width {int}
+       @param args.height {int}
+       @param args.styles {Object}
+       @param args.leftLabel {String}
+       @param args.rightLabel {String}
+       @param args.leftColor {String}
+       @param args.rigthColor {String}
+     */
     start : function(path, args){
       args = args || {};
       var targets = Array.prototype.map.call(document.querySelectorAll(path), function($dom){
