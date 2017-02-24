@@ -230,35 +230,33 @@ var Responsivook = (function(){
   };
 
   var _create_html = function(html, on_html){
-    var result = html
-      .replace(/\[page-break\](\n|<br>)*/g, "<page-break>")
-    ;
+    var result = html;
     if(on_html && typeof on_html === "function"){
       result = on_html(result);
     }
     return result;
   };
 
-  var _create_target = function($dom, opt){
+  var _create_target = function($dom, args){
     var raw_html = $dom.innerHTML;
-    var html = _create_html(raw_html, opt.onHtml || null);
-    var flow = opt.flow || "tb-rl";
+    var html = _create_html(raw_html, args.onHtml || null);
+    var flow = args.flow || "tb-rl";
     var width = $dom.offsetWidth;
-    var height_draft = Math.max(200, opt.height || _get_default_height());
-    var font_size = Math.max(opt.minFontSize || __min_font_size, opt.fontSize || _get_default_font_size(height_draft));
+    var height_draft = Math.max(200, args.height || _get_default_height());
+    var font_size = Math.max(args.minFontSize || __min_font_size, args.fontSize || _get_default_font_size(height_draft));
     var height = font_size * Math.floor(height_draft / font_size);
-    var font_family = opt.fontFamily || "'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho', monospace";
+    var font_family = args.fontFamily || "'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho', monospace";
     var page_width = _get_page_width(width, font_size);
     var page_height = _get_page_height(height, font_size);
     var is_left_next = flow === "tb-rl";
-    var left_color = opt.leftColor || "dark-blue";
-    var right_color = opt.rightColor || "red";
-    var left_label = opt.leftLabel || (is_left_next? "&#x2190; NEXT" : "&#x2190; PREV");
-    var right_label = opt.rightLabel || (is_left_next? "PREV &#x2192;" : "NEXT &#x2192;");
+    var left_color = args.leftColor || "dark-blue";
+    var right_color = args.rightColor || "red";
+    var left_label = args.leftLabel || (is_left_next? "&#x2190; NEXT" : "&#x2190; PREV");
+    var right_label = args.rightLabel || (is_left_next? "PREV &#x2192;" : "NEXT &#x2192;");
     var left_type = is_left_next? "next" : "prev";
     var right_type = is_left_next? "prev" : "next";
-    var styles = opt.styles || {};
-    var theme = opt.theme || "book";
+    var styles = args.styles || {};
+    var theme = args.theme || "book";
     return {
       $dom:$dom,
       html:html,
