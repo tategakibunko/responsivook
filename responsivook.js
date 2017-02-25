@@ -165,6 +165,12 @@ var Responsivook = (function(){
     };
   };
 
+  var _start_plain = function(opt){
+    opt.$dom.style.display = "block";
+    opt.$dom.style.visibility = "visible";
+    return document.createElement("div");
+  };
+
   var _start_book = function(opt){
     var $book = document.createElement("div");
     $book.className = "responsivook";
@@ -199,6 +205,9 @@ var Responsivook = (function(){
 
   var _start_layout = function(opt){
     switch(opt.theme){
+    case "plain":
+      _start_plain(opt);
+      break;
     case "dangumi":
       _start_dangumi(opt);
       break;
@@ -237,7 +246,21 @@ var Responsivook = (function(){
     return result;
   };
 
+  var _check_bot = function(user_agent){
+    var ua = user_agent.toLowerCase();
+    var bot_list = [
+      "googlebot",
+      "adsence-google",
+      "msnbot",
+      "bingbot"
+    ];
+    return bot_list.filter(function(pat){
+      return ua.indexOf(pat) >= 0;
+    }).length > 0;
+  };
+
   var _create_target = function($dom, args){
+    var user_agent = navigator.userAgent;
     var raw_html = $dom.innerHTML;
     var html = _create_html(raw_html, args.onHtml || null);
     var flow = args.flow || "tb-rl";
@@ -256,7 +279,8 @@ var Responsivook = (function(){
     var left_type = is_left_next? "next" : "prev";
     var right_type = is_left_next? "prev" : "next";
     var styles = args.styles || {};
-    var theme = args.theme || "book";
+    var is_bot = (typeof args.isBot === "function")? args.isBot(user_agent) : _check_bot(user_agent);
+    var theme = is_bot? "plain" : (args.theme || "book");
     return {
       $dom:$dom,
       html:html,
@@ -291,7 +315,8 @@ var Responsivook = (function(){
        @param args.rightLabel {String}
        @param args.leftColor {String}
        @param args.rigthColor {String}
-       @param args.onHtml {Function}
+       @param args.onHtml {Function} - html preprocessor for each rendering target.
+       @param args.isBot {Function} - Check if user agent is bot. If true,  prevent converting.
      */
     start : function(path, args){
       args = args || {};
