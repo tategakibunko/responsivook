@@ -259,6 +259,33 @@ var Responsivook = (function(){
     }).length > 0;
   };
 
+  var _defaults = {
+    theme:"book",
+    fontFamily:"'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho', monospace",
+    leftColor:"dark-blue",
+    rightColor:"red"
+  };
+
+  var _normalize_font_family = function(font_family){
+    font_family = font_family.trim().replace(/;/g, "");
+    if(font_family === "serif" || font_family === "monospace"){
+      return _defaults.fontFamily;
+    }
+    if(font_family.indexOf(",") >= 0){
+      var parts = font_family.split(",").map(function(str){
+	return str.trim();
+      });
+      var last = parts[parts.length - 1];
+      if(last === "serif"){
+	parts[parts.length - 1] = "monospace";
+      } else if(last !== "monospace"){
+	parts.push("monospace");
+      }
+      return parts.join(",");
+    }
+    return font_family + ", monospace";
+  };
+
   var _create_target = function($dom, args){
     var user_agent = navigator.userAgent;
     var raw_html = $dom.innerHTML;
@@ -268,19 +295,19 @@ var Responsivook = (function(){
     var height_draft = Math.max(200, args.height || _get_default_height());
     var font_size = Math.max(args.minFontSize || __min_font_size, args.fontSize || _get_default_font_size(height_draft));
     var height = font_size * Math.floor(height_draft / font_size);
-    var font_family = args.fontFamily || "'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho', monospace";
+    var font_family = _normalize_font_family(args.fontFamily || _defaults.fontFamily);
     var page_width = _get_page_width(width, font_size);
     var page_height = _get_page_height(height, font_size);
     var is_left_next = flow === "tb-rl";
-    var left_color = args.leftColor || "dark-blue";
-    var right_color = args.rightColor || "red";
+    var left_color = args.leftColor || _defaults.leftColor;
+    var right_color = args.rightColor || _defaults.rightColor;
     var left_label = args.leftLabel || (is_left_next? "&#x2190; NEXT" : "&#x2190; PREV");
     var right_label = args.rightLabel || (is_left_next? "PREV &#x2192;" : "NEXT &#x2192;");
     var left_type = is_left_next? "next" : "prev";
     var right_type = is_left_next? "prev" : "next";
     var styles = args.styles || {};
     var is_bot = (typeof args.isBot === "function")? args.isBot(user_agent) : _check_bot(user_agent);
-    var theme = is_bot? "plain" : (args.theme || "book");
+    var theme = is_bot? "plain" : (args.theme || _defaults.theme);
     return {
       $dom:$dom,
       html:html,
