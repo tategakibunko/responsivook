@@ -303,7 +303,7 @@ var Responsivook = (function(){
   };
 
   return {
-    version : "1.2.0",
+    version : "1.2.2",
     /**
        @param args.flow {String}
        @param args.theme {String}
