@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function(event){
 
     // font-size, font-family, width, height of pages.
     // if not defined, each properties are automatically defined(recommended).
-    fontFamily:"'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho'",
+    fontFamily:"'ヒラギノ明朝 Pro W3','Hiragino Mincho Pro','HiraMinProN-W3','IPA明朝','IPA Mincho', 'Meiryo','メイリオ','ＭＳ 明朝','MS Mincho', monospace",
     fontSize:16,
     height:400,
 
